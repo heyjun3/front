@@ -1,0 +1,7 @@
+FROM node:18.0-alpine3.14
+ENV NODE_VERSION 18.0
+WORKDIR /src
+COPY ./src /src
+EXPOSE 3000
+ENV CI=true
+USER node
