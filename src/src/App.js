@@ -4,6 +4,7 @@ import Header from './components/Header'
 import SignIn from './templates/SignIn'
 import SignUp from './templates/SignUp'
 import BoxList from './components/BoxList'
+import CustomizedInputBase from './components/Search'
 
 
 
@@ -15,7 +16,8 @@ function App() {
         <Routes>
           <Route path="/sign-in" element={<SignIn />}/>
           <Route path="/" element={<SignUp />}/>
-          <Route path="list" element={<BoxList />} />
+          <Route path="/list" element={<BoxList />} />
+          <Route path="search" element={<CustomizedInputBase />} />
         </Routes>
       </BrowserRouter>
     </div>
