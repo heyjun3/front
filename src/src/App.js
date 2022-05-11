@@ -15,9 +15,9 @@ function App() {
         <Header />
         <Routes>
           <Route path="/sign-in" element={<SignIn />}/>
-          <Route path="/" element={<SignUp />}/>
+          <Route path="/sign-up" element={<SignUp />}/>
           <Route path="/list" element={<BoxList />} />
-          <Route path="search" element={<CustomizedInputBase />} />
+          <Route path="/" element={<CustomizedInputBase />} />
         </Routes>
       </BrowserRouter>
     </div>
