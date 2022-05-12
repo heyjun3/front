@@ -3,22 +3,31 @@ import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import DirectionsIcon from '@mui/icons-material/Directions';
+import {LineChart, Line, CartesianGrid, XAxis, YAxis} from 'recharts';
+
+
 
 export default function CustomizedInputBase() {
-  const [info, setInfo] = React.useState('')
+  const [data, setData] = React.useState([])
+
+  const renderLineChart = (
+    <LineChart width={1000} height={400} data={data} >
+      <Line type="monotone" dataKey="price" stroke="#8884d8" />
+      <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+      <XAxis dataKey="date" />
+      <YAxis />
+    </LineChart>
+  )
 
   const handleSubmit = (event) => {
       event.preventDefault();
       const data = new FormData(event.currentTarget)
       const value = data.get('amazon')
       console.log(value)
-      setInfo(value)
-    //   fetch(`http://localhost/search/${value}`, {method: 'GET', mode: 'cors'})
-    //   .then(res => res.json())
-    //   .then(data => console.log(data))
+      fetch(`http://localhost:5000/search/${value}`, {method: 'GET', mode: 'cors'})
+      .then(res => res.json())
+      .then(data => setData(data))
   }
   return (
     <div>
@@ -38,7 +47,12 @@ export default function CustomizedInputBase() {
         <SearchIcon />
       </IconButton>
     </Paper>
-    {info ? <p>{info}</p> : <p>aaa</p>}
+    {data.length !== 0 ? 
+      <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '70vh'}}>
+        {renderLineChart}
+      </div>
+      : <p></p>
+    }
     </div>
     
   );
