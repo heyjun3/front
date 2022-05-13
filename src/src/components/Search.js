@@ -24,10 +24,14 @@ export default function CustomizedInputBase() {
       event.preventDefault();
       const data = new FormData(event.currentTarget)
       const value = data.get('amazon')
-      console.log(value)
-      fetch(`http://localhost:5000/search/${value}`, {method: 'GET', mode: 'cors'})
-      .then(res => res.json())
-      .then(data => setData(data))
+      if (value){
+        console.log(value)
+        fetch(`http://localhost:5000/search/${value}`, {method: 'GET', mode: 'cors'})
+        .then(res => res.json())
+        .then(data => setData(data))
+      } else {
+        setData([])
+      }
   }
   return (
     <div>
@@ -38,7 +42,7 @@ export default function CustomizedInputBase() {
     >
       <InputBase
         sx={{ ml: 1, flex: 1 }}
-        placeholder="Search Amazon"
+        placeholder="Search by Amazon, Enter ASIN Code"
         inputProps={{ 'aria-label': 'search amazon' }}
         name='amazon'
       />
