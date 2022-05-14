@@ -13,7 +13,7 @@ export default function CustomizedInputBase() {
 
   const renderLineChart = (
     <LineChart width={1000} height={400} data={data} >
-      <Line type="monotone" dataKey="price" stroke="#8884d8" />
+      <Line type="monotone" dataKey="price" stroke="#8884d8" dot={false}/>
       <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
       <XAxis dataKey="date" />
       <YAxis />
