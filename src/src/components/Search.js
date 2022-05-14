@@ -4,21 +4,12 @@ import InputBase from '@mui/material/InputBase';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
-import {LineChart, Line, CartesianGrid, XAxis, YAxis} from 'recharts';
+import RenderLineChart from './LineChart';
 
 
 
 export default function CustomizedInputBase() {
   const [data, setData] = React.useState([])
-
-  const renderLineChart = (
-    <LineChart width={1000} height={400} data={data} >
-      <Line type="monotone" dataKey="price" stroke="#8884d8" dot={false}/>
-      <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-      <XAxis dataKey="date" />
-      <YAxis />
-    </LineChart>
-  )
 
   const handleSubmit = (event) => {
       event.preventDefault();
@@ -51,12 +42,7 @@ export default function CustomizedInputBase() {
         <SearchIcon />
       </IconButton>
     </Paper>
-    {data.length !== 0 ? 
-      <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '70vh'}}>
-        {renderLineChart}
-      </div>
-      : <p></p>
-    }
+      {data.length !== 0 ? <RenderLineChart data={data}/> : <p></p>}
     </div>
     
   );
