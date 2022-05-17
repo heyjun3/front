@@ -8,35 +8,18 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import {Link} from 'react-router-dom';
 
 
-export default function BoxList() {
-  const [filenames, setFilenames] = React.useState([]);
-  React.useEffect(() => {
-    fetch('http://localhost:5000/list', {method: 'GET', mode: 'cors'})
-    .then(res => res.json())
-    .then(data =>
-        setFilenames(data['list'])
-      )
-  }, [])
-
-  const deleteFile = (value) => {
-    setFilenames(
-      filenames.filter((file) => (file !== value))
-    )
-    fetch(`http://localhost:5000/deleteFile/${value}`, {method: 'DELETE', mode: 'cors'})
-    .then(res => res.json())
-    .then(data => console.log(data))
-  }
+export default function BoxList(props) {
 
   return (
     <List sx={{ width: '100%', maxWidth: 500, bgcolor: 'background.paper', margin: 'auto', mt: '10px' }}>
-      {filenames.map((value) => {
+      {props.filenames.map((value) => {
         const labelId = `checkbox-list-label-${value}`;
 
         return (
           <ListItem
             key={value}
             secondaryAction={
-              <IconButton edge="end" aria-label="comments" onClick={() => deleteFile(value)}>
+              <IconButton edge="end" aria-label="comments" onClick={() => props.deleteFunc(value)}>
                 <DeleteIcon />
               </IconButton>
             }

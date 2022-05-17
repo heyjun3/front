@@ -13,9 +13,18 @@ const ApiFetch = () => {
       })
   }, [])
 
+  const deleteFile = (value) => {
+    setFilenames(
+      filenames.filter((file) => (file !== value))
+    )
+    fetch(`http://localhost:5000/deleteFile/${value}`, {method: 'DELETE', mode: 'cors'})
+    .then(res => res.json())
+    .then(data => console.log(data))
+  }
+
   return (
     <div>
-        <BoxList value={filenames} />
+        <BoxList filenames={filenames} deleteFunc={deleteFile}/>
     </div>
   )
 }
