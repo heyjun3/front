@@ -10,11 +10,10 @@ import RenderLineChart from './LineChart';
 
 export default function CustomizedInputBase() {
   const [data, setData] = React.useState([])
+  const [asin, setAsin] = React.useState('')
 
-  const handleSubmit = (event) => {
-      event.preventDefault();
-      const data = new FormData(event.currentTarget)
-      const value = data.get('amazon')
+  const handleClick = () => {
+      const value = asin
       if (value){
         console.log(value)
         fetch(`http://localhost:5000/search/${value}`, {method: 'GET', mode: 'cors'})
@@ -24,21 +23,27 @@ export default function CustomizedInputBase() {
         setData([])
       }
   }
+
+  const handleInputChange = () => evt => {
+    const asin = evt.target.value
+    setAsin(asin)
+    }
+
   return (
     <div>
     <Paper
       component="form"
-      onSubmit={handleSubmit}
       sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '50%' , margin: 'auto', mt: '50px'}}
     >
       <InputBase
         sx={{ ml: 1, flex: 1 }}
         placeholder="Search by Amazon, Enter ASIN Code"
         inputProps={{ 'aria-label': 'search amazon' }}
-        name='amazon'
+        value={asin}
+        onChange={handleInputChange()}
       />
       <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-      <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
+      <IconButton type="button" sx={{ p: '10px' }} aria-label="search" onClick={handleClick}>
         <SearchIcon />
       </IconButton>
     </Paper>
