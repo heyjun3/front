@@ -47,7 +47,7 @@ export default function CustomizedInputBase() {
         <SearchIcon />
       </IconButton>
     </Paper>
-      {data.length !== 0 && <RenderLineChart data={data}/>}
+      {data.length !== 0 && <RenderLineChart data={data.chart_data} title={data.title}/>}
     </div>
     
   );

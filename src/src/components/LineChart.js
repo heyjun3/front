@@ -5,6 +5,7 @@ import {LineChart, Line, CartesianGrid, XAxis, YAxis, ResponsiveContainer} from 
 const RenderLineChart = (props) => {
   return (
     <div>
+      <h3>{props.title}</h3>
       <ResponsiveContainer className="LineChart" width='70%' height={400}>
       <LineChart data={props.data} >
         <Line type="monotone" dataKey="price" stroke="#8884d8" dot={false}/>
