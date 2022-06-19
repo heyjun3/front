@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import {useLocation} from 'react-router-dom'
 import RenderLineChart from './LineChart'
 
 const jan = '4901872837144'
@@ -14,7 +15,8 @@ const ChartLists = () => {
   }, [])
 
   return (
-    <div>
+    <div className="chartLists">
+        <RenderLineChart data={data.chart_data} title={data.title} jan={jan} asin={asin}/>
         <RenderLineChart data={data.chart_data} title={data.title} jan={jan} asin={asin}/>
     </div>
   )

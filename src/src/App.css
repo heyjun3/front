@@ -45,7 +45,24 @@
   margin: 0 auto;
   padding-top: 0px;
 }
-.ChartLists {
-  padding-top: 109px;
+.renderLineChart {
+  padding-top: 10px;
 }
+.asinBox {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.title {
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+}
+.asin {
+  text-align: right;
+}
+.asin a:visited{
+  color: red;
+}
+
 
