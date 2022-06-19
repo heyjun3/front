@@ -14,6 +14,7 @@ const RenderLineChart = (props) => {
         <YAxis />
       </LineChart>
       </ResponsiveContainer>
+      <h3>JAN : 4901872837144 ASIN : B00YM1MEJI</h3>
     </div>
   )
 }
