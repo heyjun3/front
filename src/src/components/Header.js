@@ -25,7 +25,7 @@ export default function ButtonAppBar() {
           </IconButton>
           <Typography component="div" sx={{ flexGrow: 1 }}>
             {/* <Button component={Link} to="/" color="inherit">Search</Button> */}
-            <Button onClick={() => navigate("/")} color="inherit">Search</Button>
+            <Button onClick={() => navigate("/list")} color="inherit">Search</Button>
           </Typography>
           <Button component={Link} to="/sign-in" color="inherit">Sign in</Button>
         </Toolbar>

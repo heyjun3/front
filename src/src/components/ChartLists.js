@@ -1,23 +1,37 @@
 import React, {useEffect, useState} from 'react'
-import {useLocation} from 'react-router-dom'
+import {useLocation, Navigate} from 'react-router-dom'
 import RenderLineChart from './LineChart'
 
-const jan = '4901872837144'
-const asin = 'B08K3GYGQ9'
+const filenameNumber = 2
 
 const ChartLists = () => {
-  const [data, setData] = useState({})
+  const [products, setProducts] = useState([])
+  const [redirect, setRedirect] = useState(false)
+
+  let location = useLocation()
+  const filename = location.pathname.split('/')[filenameNumber]
 
   useEffect(() => {
-    fetch(`http://localhost:5000/search/${asin}`, {method: 'GET', mode: 'cors'})
-    .then(res => res.json())
-    .then(data => setData(data))
-  }, [])
+    fetch(`http://localhost:5000/chart_list/${filename}`, {method: 'GET', mode: 'cors'})
+    .then(res => res.json()) 
+    .then(data => {
+      if (data.status === "error"){
+        console.log('error')
+        setRedirect(true)
+      }
+      setProducts(data)
+    })
+  }, [filename])
+  
+  if (redirect){
+    return <Navigate to="/list"/>
+  }
 
   return (
     <div className="chartLists">
-        <RenderLineChart data={data.data} title={data.title} jan={jan} asin={asin}/>
-        <RenderLineChart data={data.data} title={data.title} jan={jan} asin={asin}/>
+      {products.map((product) => { 
+        return <RenderLineChart key={product.asin} data={product.data} title={product.title} jan={product.jan} asin={product.asin}/>
+      })}
     </div>
   )
 }

@@ -17,7 +17,7 @@ function App() {
           <Route path="/sign-in" element={<SignIn />}/>
           <Route path="/sign-up" element={<SignUp />}/>
           <Route path="/list" element={<ApiFecth />} />
-          <Route path="/chartList" element={<ChartLists />} />
+          <Route path="/chartList/*" element={<ChartLists />} />
           <Route path="/" element={<CustomizedInputBase />} />
         </Routes>
       </BrowserRouter>
