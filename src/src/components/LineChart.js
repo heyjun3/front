@@ -10,8 +10,8 @@ const RenderLineChart = (props) => {
       <LineChart data={props.data} >
         <YAxis yAxisId={1} type="number" domain={["dataMin - 1000", "dataMax + 1000"]}/>
         <YAxis yAxisId={2} type="number" domain={["dataMin - 1000", "dataMax + 2000"]} orientation="right"/>
-        <Line yAxisId={1} strokeWidth={3} type="monotone" dataKey="price" stroke="#8884d8" dot={false}/>
-        <Line yAxisId={2} strokeWidth={3} type="monotone" dataKey="rank" stroke="#82ca9d" dot={false}/>
+        <Line yAxisId={1} strokeWidth={3} type="monotone" dataKey="price" stroke="#8884d8" dot={false} isAnimationActive={false}/>
+        <Line yAxisId={2} strokeWidth={3} type="monotone" dataKey="rank" stroke="#82ca9d" dot={false} isAnimationActive={false}/>
         <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
         <XAxis dataKey="date" />
         <Legend />
