@@ -12,7 +12,7 @@ const ChartLists = () => {
   const filename = location.pathname.split('/')[filenameNumber]
 
   useEffect(() => {
-    fetch(`http://localhost:5000/chart_list/${filename}`, {method: 'GET', mode: 'cors'})
+    fetch(`http://${window.location.hostname}:5000/chart_list/${filename}`, {method: 'GET', mode: 'cors'})
     .then(res => res.json()) 
     .then(data => {
       if (data.status === "error"){

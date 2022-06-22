@@ -6,7 +6,7 @@ const ApiFetch = () => {
 
   const [filenames, setFilenames] = useState([])
   useEffect(() => {
-      fetch('http://localhost:5000/list', {method: 'GET', mode: "cors"})
+      fetch(`http://${window.location.hostname}:5000/list`, {method: 'GET', mode: "cors"})
       .then(res => res.json())
       .then(data => {
           setFilenames(data['list'])
@@ -17,7 +17,7 @@ const ApiFetch = () => {
     setFilenames(
       filenames.filter((file) => (file !== value))
     )
-    fetch(`http://localhost:5000/deleteFile/${value}`, {method: 'DELETE', mode: 'cors'})
+    fetch(`http://${window.location.hostname}:5000/deleteFile/${value}`, {method: 'DELETE', mode: 'cors'})
     .then(res => res.json())
     .then(data => console.log(data))
   }

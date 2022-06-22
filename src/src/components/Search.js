@@ -16,7 +16,7 @@ export default function CustomizedInputBase() {
       const value = asin
       if (value){
         console.log(value)
-        fetch(`http://localhost:5000/search/${value}`, {method: 'GET', mode: 'cors'})
+        fetch(`http://${window.location.hostname}:5000/search/${value}`, {method: 'GET', mode: 'cors'})
         .then(res => res.json())
         .then(data => setData(data))
       } else {
