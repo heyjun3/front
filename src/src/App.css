@@ -64,5 +64,7 @@
 .asin a:visited{
   color: red;
 }
-
-
+.pagination {
+  margin-left: auto;
+  margin-right: auto;
+}

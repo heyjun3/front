@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {useLocation, Navigate} from 'react-router-dom'
+import Pagination from '@mui/material/Pagination'
+import Stack from '@mui/material/Stack'
 import RenderLineChart from './LineChart'
 
 const filenameNumber = 2
@@ -7,21 +9,32 @@ const filenameNumber = 2
 const ChartLists = () => {
   const [products, setProducts] = useState([])
   const [redirect, setRedirect] = useState(false)
+  const [page, setPage] = useState(1)
+  const [maxPage, setMaxPage] = useState(0)
 
   let location = useLocation()
   const filename = location.pathname.split('/')[filenameNumber]
 
   useEffect(() => {
-    fetch(`http://${window.location.hostname}:5000/chart_list/${filename}`, {method: 'GET', mode: 'cors'})
+    fetch(`http://${window.location.hostname}:5000/chart_list/${filename}?page=${page}`, {method: 'GET', mode: 'cors'})
     .then(res => res.json()) 
     .then(data => {
       if (data.status === "error"){
         console.log('error')
         setRedirect(true)
       }
-      setProducts(data)
+      setProducts(data.chart_data)
+      setMaxPage(data.max_page)
     })
-  }, [filename])
+  }, [page, filename])
+
+  const handleChange = (event, value) => {
+    setPage(value)
+    window.scrollTo({
+      top: 0,
+      behavior: "auto",
+    })
+  }
   
   if (redirect){
     return <Navigate to="/list"/>
@@ -32,6 +45,9 @@ const ChartLists = () => {
       {products.map((product) => { 
         return <RenderLineChart key={product.asin} data={product.data} title={product.title} jan={product.jan} asin={product.asin}/>
       })}
+      <Stack className="stack" spacing={2}>
+        <Pagination className="pagination" count={maxPage} page={page} onChange={handleChange}/>
+      </Stack>
     </div>
   )
 }
