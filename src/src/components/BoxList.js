@@ -25,7 +25,7 @@ export default function BoxList(props) {
             }
             disablePadding
           >
-            <ListItemButton component={Link} to={`/chartList/${value}`} role={undefined} dense >
+            <ListItemButton component={Link} to={`/chartList/${value}`} role={undefined} dense target="_blank" >
               <ListItemText align="center" id={labelId} primary={value} />
             </ListItemButton>
           </ListItem>
