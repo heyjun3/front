@@ -3,6 +3,7 @@ import {useLocation, Navigate} from 'react-router-dom'
 import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
 import RenderLineChart from './LineChart'
+import config from '../config'
 
 const filenameNumber = 2
 
@@ -16,7 +17,7 @@ const ChartLists = () => {
   const filename = location.pathname.split('/')[filenameNumber]
 
   useEffect(() => {
-    fetch(`http://${window.location.hostname}:5000/chart_list/${filename}?page=${page}`, {method: 'GET', mode: 'cors'})
+    fetch(`${config.fqdn}/api/chart_list/${filename}?page=${page}`, {method: 'GET', mode: 'cors'})
     .then(res => res.json()) 
     .then(data => {
       if (data.status === "error"){
