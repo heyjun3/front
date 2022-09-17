@@ -17,7 +17,8 @@ const RenderLineChart = (props) => {
         <Legend />
       </LineChart>
       </ResponsiveContainer>
-      <div className="asinBox"><h3 className="asin">JAN : {props.jan} ASIN : <a href={`https://www.amazon.co.jp/dp/${props.asin}`} target="_blank" rel="noreferrer">{props.asin}</a></h3></div>
+      <div className="asinBox">
+        <h3 className="asin">JAN : <a href={props.url} target="_blank" rel="noreferrer">{props.jan}</a> ASIN : <a href={`https://www.amazon.co.jp/dp/${props.asin}`} target="_blank" rel="noreferrer">{props.asin}</a></h3></div>
     </div>
   )
 }

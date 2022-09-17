@@ -44,7 +44,7 @@ const ChartLists = () => {
   return (
     <div className="chartLists">
       {products.map((product) => { 
-        return <RenderLineChart key={product.asin} data={product.data} title={product.title} jan={product.jan} asin={product.asin}/>
+        return <RenderLineChart key={product.asin} data={product.data} title={product.title} jan={product.jan} asin={product.asin} url={product.url}/>
       })}
       <Stack className="stack" spacing={2}>
         <Pagination className="pagination" count={maxPage} page={page} onChange={handleChange}/>
