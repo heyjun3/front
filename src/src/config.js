@@ -1,5 +1,5 @@
 const config = {
-    fqdn: 'http://localhost:80',
+    fqdn: 'http://192.168.0.8:80',
 }
 
 export default config
