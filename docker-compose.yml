@@ -1,15 +1,19 @@
 version: "3.8"
 services:
   front:
-    build: ./
+    build:
+      context: .
+      dockerfile: ./Dockerfile
     container_name: front
-    volumes:
-      - ./src:/app
-    working_dir: /app
     ports:
-      - 3000:3000
+      - 80:80
     tty: true
     stdin_open: true
     environment:
       - CHOKIDAR_USEPOLLING=true
+
+networks:
+  default:
+    name: aps_default
+    external: true
     
