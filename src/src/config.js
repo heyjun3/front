@@ -1,5 +1,5 @@
 const config = {
-    fqdn: 'http://localhost:80',
+    fqdn: 'http://chart-prd.lo:80',
 }
 
 export default config
