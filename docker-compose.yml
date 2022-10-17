@@ -5,6 +5,7 @@ services:
       context: .
       dockerfile: ./Dockerfile
     container_name: front
+    restart: always
     ports:
       - 80:80
     tty: true
